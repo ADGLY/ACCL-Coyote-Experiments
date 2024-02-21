@@ -21,8 +21,10 @@ fi
 6. Edit ACCL/test/refdesigns/Coyote/flow_alveo.sh and:
    1. Change every `/opt/cli` to `/opt/sgrt/cli`.
    2. Line 100: Remove ` && ` at the end of the line
+   3. The change should look like: https://github.com/fpgasystems/Coyote/pull/50/files
 7. Edit ACCL/test/refdesigns/Coyote/sw/src/cProcess.cpp:
-   1. Add `((cs_invoke.dest & CTRL_DEST_MASK) << CTRL_DEST_WR) |` after line 430 and after line 450 (or 451 if you added to the previous location). The change should look like: https://github.com/ADGLY/Coyote/commit/33fa447a2d887e5c6ede345ee60a169f602587fb
+   1. Add `((cs_invoke.dest & CTRL_DEST_MASK) << CTRL_DEST_WR) |` after line 430 and after line 450 (or 451 if you added to the previous location)
+   2. The change should look like: https://github.com/ADGLY/Coyote/commit/33fa447a2d887e5c6ede345ee60a169f602587fb
 
 # Generating the bitstreams
 
@@ -48,13 +50,14 @@ fi
 
 ## Distributed
 
-1. Copy software/test_distributed.cpp to ACCL/test/host/Coyote
-2. Make the ACCL/test/host/Coyote/CMakeLists.txt use this as a source file instead of test.cpp
-3. Edit ACCL/test/host/Coyote/run_scripts/run.sh:
+1. Log into a U55C machine
+2. Copy software/test_distributed.cpp to ACCL/test/host/Coyote
+3. Make the ACCL/test/host/Coyote/CMakeLists.txt use test_distributed.cpp as a source file instead of test.cpp
+4. Edit ACCL/test/host/Coyote/run_scripts/run.sh:
    1. Set `TEST_MODE` to 15
    2. Change `mpirun` to `/mnt/scratch/zhe/mpich/install/bin/mpirun`
    3. Change `SLEEPTIME` to 30
-4. From ACCL/test/host/Coyote/run_scripts run: `./run.sh'
-5. Specify the ids of the boards in the order of the ranks
+5. From ACCL/test/host/Coyote/run_scripts run: `./run.sh'
+6. Specify the ids of the boards in the order of the ranks
 
     
