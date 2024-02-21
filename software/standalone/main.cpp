@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
   uint64_t FINN_CTRL_OFFSET = 0x0;
 
   cproc->setCSR(nbInputs, (FINN_CTRL_OFFSET + 0x10) >> 3);
-  cproc->setCSR(0x8110, (FINN_CTRL_OFFSET + 0x18) >> 3);
+  cproc->setCSR(0x910, (FINN_CTRL_OFFSET + 0x18) >> 3);
   cproc->setCSR(1, (FINN_CTRL_OFFSET + 0x0) >> 3);
   while (!(cproc->getCSR((FINN_CTRL_OFFSET + 0x0) >> 3) & 2))
     ;
