@@ -1,0 +1,6 @@
+[submodule "finn"]
+	path = finn
+	url = https://github.com/fpgasystems/finn.git
+[submodule "ACCL"]
+	path = ACCL
+	url = https://github.com/zhenhaohe/ACCL.git
