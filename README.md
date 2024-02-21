@@ -18,6 +18,11 @@ if [ ! -z "$LM_LICENSE_FILE" ]; then
 fi
 ```
 5. You need to have `LM_LICENSE_FILE` and `XILINXD_LICENSE_FILE` set in your environment
+6. Edit ACCL/test/refdesigns/Coyote/flow_alveo.sh and:
+   1. Change every `/opt/cli` to `/opt/sgrt/cli`.
+   2. Line 100: Remove ` && ` at the end of the line
+7. Edit ACCL/test/refdesigns/Coyote/sw/src/cProcess.cpp:
+   1. Add `((cs_invoke.dest & CTRL_DEST_MASK) << CTRL_DEST_WR) |` after line 430 and after line 450 (or 451 if you added to the previous location). The change should look like: https://github.com/ADGLY/Coyote/commit/33fa447a2d887e5c6ede345ee60a169f602587fb
 
 # Generating the bitstreams
 
@@ -28,17 +33,18 @@ fi
 # Programming the bitstreams
 
 1. Log into a U55C machine
-2. Run: `ACCL/test/refdesigns/Coyote/flow_alveo.sh . ./finn/<output_folder_name>/<optional_rank>/bitfile/cyt_top ./ACCL/test/refdesigns/Coyote/driver`
+2. From ACCL/test/refdesigns/Coyote run: `./flow_alveo.sh <absolute_path_to_current_working_directory> ../../../../cybersecurity/<output_folder_name>/<optional_rank>/bitfile/cyt_top ./driver`
 3. Specify the id of the board that match the rank of the bitstreams you want to program
 
 # Run the examples
 
 ## Standalone
 
-1. Create a build folder in ACCL/test/refdesigns/Coyote/sw
-2. From the build directory run: `cmake .. -DTARGET_DIR=../../../../../software/test_standalone.cpp`
-3. Run make from the build directory
-4. Run the executable
+1. Log into a U55C machine
+2. Create a build folder in ACCL/test/refdesigns/Coyote/sw
+3. From the build directory run: `/usr/bin/cmake .. -DTARGET_DIR=../../../../../software/standalone/`
+4. Run make from the build directory
+5. Run the executable
 
 ## Distributed
 
