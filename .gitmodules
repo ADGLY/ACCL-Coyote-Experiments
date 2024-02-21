@@ -1,0 +1,8 @@
+[submodule "finn"]
+	path = finn
+	url = https://github.com/fpgasystems/finn.git
+	branch = full_accl_support
+[submodule "ACCL"]
+	path = ACCL
+	url = https://github.com/zhenhaohe/ACCL.git
+	branch = external_dma
