@@ -51,13 +51,15 @@ fi
 ## Distributed
 
 1. Log into a U55C machine
-2. Copy software/test_distributed.cpp to ACCL/test/host/Coyote
-3. Make the ACCL/test/host/Coyote/CMakeLists.txt use test_distributed.cpp as a source file instead of test.cpp
-4. Edit ACCL/test/host/Coyote/run_scripts/run.sh:
+2. Make the ACCL/test/host/Coyote/CMakeLists.txt use test_distributed.cpp as a source file instead of test.cpp
+4. Create a build directory in ACCL/test/host/Coyote
+5. From the build directory run: `/usr/bin/cmake .. -DMPI_C_COMPILER
+=/mnt/scratch/zhe/mpich/install/bin/mpicc -DMPI_CXX_COMPILER=/mnt/scratch/zhe/mpich/install/bin/mpicxx`
+6. Edit ACCL/test/host/Coyote/run_scripts/run.sh:
    1. Set `TEST_MODE` to 15
    2. Change `mpirun` to `/mnt/scratch/zhe/mpich/install/bin/mpirun`
    3. Change `SLEEPTIME` to 30
-5. From ACCL/test/host/Coyote/run_scripts run: `./run.sh'
-6. Specify the ids of the boards in the order of the ranks
+7. From ACCL/test/host/Coyote/run_scripts run: `./run.sh'
+8. Specify the ids of the boards in the order of the ranks
 
     
