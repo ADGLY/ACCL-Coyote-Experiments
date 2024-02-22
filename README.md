@@ -28,7 +28,7 @@ fi
 # Programming the bitstreams
 
 1. Log into a U55C machine
-2. Go into ACCL/test/refdesigns/Coyote/driver and run: make if the driver is not already compiled
+2. Go into ACCL/test/refdesigns/Coyote/driver and run: `make` if the driver is not already compiled
 3. Edit the FPGA_BIT_PATH variable in ACCL/test/host/Coyote/run_scripts/flow_u55c.sh to point to the appropriate bitstream
    - Standalone: ../../../../cybersecurity/<output_folder_name>/bitfile/cyt_top
    - Distributed: ../../../../cybersecurity/<output_folder_name>/<optional_rank>/bitfile/cyt_top
