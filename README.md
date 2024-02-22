@@ -22,7 +22,7 @@ fi
 # Generating the bitstreams
 
 1. Edit the `number_of_boards` variable in `cybersecurity/build.py` to specify the number of boards you want.
-2. Run: `./run-docker.sh build_custom ../cybersecurity/`
+2. From the finn directory, run: `./run-docker.sh build_custom ../cybersecurity/`
 
 
 # Programming the bitstreams
