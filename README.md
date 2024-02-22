@@ -18,13 +18,6 @@ if [ ! -z "$LM_LICENSE_FILE" ]; then
 fi
 ```
 5. You need to have `LM_LICENSE_FILE` and `XILINXD_LICENSE_FILE` set in your environment
-6. Edit ACCL/test/refdesigns/Coyote/flow_alveo.sh and:
-   1. Change every `/opt/cli` to `/opt/sgrt/cli`.
-   2. Line 100: Remove ` && ` at the end of the line
-   3. The change should look like: https://github.com/fpgasystems/Coyote/pull/50/files
-7. Edit ACCL/test/refdesigns/Coyote/sw/src/cProcess.cpp:
-   1. Add `((cs_invoke.dest & CTRL_DEST_MASK) << CTRL_DEST_WR) |` after line 430 and after line 450 (or 451 if you added to the previous location)
-   2. The change should look like: https://github.com/ADGLY/Coyote/commit/33fa447a2d887e5c6ede345ee60a169f602587fb
 
 # Generating the bitstreams
 
@@ -35,8 +28,12 @@ fi
 # Programming the bitstreams
 
 1. Log into a U55C machine
-2. From ACCL/test/refdesigns/Coyote run: `./flow_alveo.sh <absolute_path_to_current_working_directory> ../../../../cybersecurity/<output_folder_name>/<optional_rank>/bitfile/cyt_top ./driver`
-3. Specify the id of the board that match the rank of the bitstreams you want to program
+2. Go into ACCL/test/refdesigns/Coyote/driver and run: make if the driver is not already compiled
+3. Edit the FPGA_BIT_PATH variable in ACCL/test/host/Coyote/run_scripts/flow_u55c.sh to point to the appropriate bitstream
+   - Standalone: ../../../../cybersecurity/<output_folder_name>/bitfile/cyt_top
+   - Distributed: ../../../../cybersecurity/<output_folder_name>/<optional_rank>/bitfile/cyt_top
+4. From ACCL/test/host/Coyote/run_scripts run: `./flow_alveo.sh 1 1`
+5. Specify the id of the board that match the rank of the bitstreams you want to program
 
 # Run the examples
 
