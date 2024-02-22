@@ -53,7 +53,7 @@ if number_of_boards > 1:
 output_dir_name = ""
 if number_of_boards == 1:
     output_dir_name = "output_standalone"
-else
+else:
     output_dir_name = f"output_{number_of_boards}_boards"
 
 model_file = "./cybsec-mlp-ready.onnx"
