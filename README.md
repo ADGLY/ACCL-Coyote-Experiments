@@ -1,7 +1,7 @@
 # Setup
 
 1. Clone the repository
-2. Run: `git submodule update --init --recursive`
+2. Run: `git submodule update --init --recursive --remote`
 3. Go into `ACCL/test/refdesigns/Coyote` and checkout the `accl_integration` branch
 4. Edit `finn/docker/Dockerfile.finn` and add:
 ```
