@@ -1,7 +1,7 @@
 # Setup
 
 1. Clone the repository
-2. Run: `git submodule update --init --recursive --remote`
+2. Run: `git submodule update --init --recursive --remote`. It is fine if there are errors in the output.
 3. Go into `ACCL/test/refdesigns/Coyote` and checkout the `accl_integration` branch
 4. Edit `finn/docker/Dockerfile.finn` and add:
 ```
@@ -18,7 +18,13 @@ if [ ! -z "$LM_LICENSE_FILE" ]; then
 fi
 ```
 5. You need to have `LM_LICENSE_FILE` and `XILINXD_LICENSE_FILE` set in your environment
-
+6. For the FINN specific environment variables:
+```
+export FINN_XILINX_PATH=/tools/Xilinx
+export FINN_XILINX_VERSION=2022.2
+export PLATFORM_REPO_PATHS=/opt/xilinx/platforms
+export PATH="/mnt/scratch/<your_username>/utils/bin:$PATH"
+```
 # Generating the bitstreams
 
 1. Edit the `number_of_boards` variable in `cybersecurity/build.py` to specify the number of boards you want.
@@ -32,8 +38,9 @@ fi
 3. Edit the FPGA_BIT_PATH variable in `ACCL/test/host/Coyote/run_scripts/flow_u55c.sh` to point to the appropriate bitstream
    - Standalone: `$SCRIPT_DIR/../../../../../cybersecurity/<output_folder_name>/bitfile/cyt_top`
    - Distributed: `$SCRIPT_DIR/../../../../../cybersecurity/<output_folder_name>/<optional_rank>/bitfile/cyt_top`
-4. From ACCL/test/host/Coyote/run_scripts run: `./flow_alveo.sh 1 1`
-5. Specify the id of the board that match the rank of the bitstreams you want to program
+4. Make sure the coyote_drv is not currently loaded: `sudo rmmod coyote_drv`
+5. From ACCL/test/host/Coyote/run_scripts run: `./flow_alveo.sh 1 1`
+6. Specify the id of the board that match the rank of the bitstreams you want to program
 
 # Run the examples
 
