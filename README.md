@@ -23,7 +23,6 @@ fi
 export FINN_XILINX_PATH=/tools/Xilinx
 export FINN_XILINX_VERSION=2022.2
 export PLATFORM_REPO_PATHS=/opt/xilinx/platforms
-export PATH="/mnt/scratch/<your_username>/utils/bin:$PATH"
 ```
 # Generating the bitstreams
 
